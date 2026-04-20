@@ -1,5 +1,3 @@
-// docs/ticketfire-full-data-model-and-seeding-specification.md
-
 # TicketFire Full Data Model & Seeding Specification
 
 This document defines the complete backend domain model for TicketFire: collections, validation rules, lookup tables, seed data, event schedules, and analytics pipelines.

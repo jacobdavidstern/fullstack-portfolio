@@ -1,5 +1,3 @@
-// src/pages/Home.jsx
-
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Leaderboard from '../components/Leaderboard';

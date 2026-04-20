@@ -1,5 +1,3 @@
-// client/src/styles/theme.js
-
 export const theme = {
   colors: {
     primary: '#3a5a78',

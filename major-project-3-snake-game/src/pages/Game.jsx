@@ -1,5 +1,3 @@
-// src/pages/Game.jsx
-
 import GameBoard from '../components/GameBoard';
 import { useGameContext } from '../hooks/useGameContext';
 import { useNavigate } from 'react-router-dom';

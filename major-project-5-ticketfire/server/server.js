@@ -1,5 +1,3 @@
-// server/server.js
-
 require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
@@ -29,7 +27,7 @@ app.use('/api', apiLimiter);
 const apiRoutes = require('./routes');
 app.use('/api', apiRoutes);
 
-// DEBUG Health Route
+// Health Route
 if (process.env.NODE_ENV === 'development') {
   app.get('/api/test', (req, res) => {
     res.json({ message: 'Backend is working!' });
@@ -42,7 +40,7 @@ const startServer = async () => {
     await connectDB();
     const PORT = process.env.PORT || 3001;
 
-    // DEBUG Log all routes at startup in development
+    // Log all routes at startup in development
     if (process.env.NODE_ENV === 'development') {
       const { registry } = require('./routeRegistry');
       console.log(registry);

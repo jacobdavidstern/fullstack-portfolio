@@ -1,5 +1,3 @@
-// docs/ticketfire-data-model-overview.md
-
 # TicketFire Data Model Overview
 
 This document summarizes the core backend domain model for TicketFire: collections, relationships, validation rules, and the multi‑tenant structure.

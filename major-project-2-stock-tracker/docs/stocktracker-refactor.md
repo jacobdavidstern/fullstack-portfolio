@@ -1,31 +1,54 @@
-# Refactor StockTracker To Do
+# StockTracker Refactor Plan
 
-## SOC (separation of concerns)
+This document outlines optional improvements that could further streamline the StockTracker codebase. The app is fully functional as‑is; these notes simply capture opportunities to increase maintainability, reduce duplication, and clarify data flow if future development ever becomes relevant.
 
-- [ ] Split stock lookup into separate functions for symbol and name (based on string length)
-- [ ] Split update localStorage operations into separate functions
-- [ ] Split render localStorage operations into separate functions
+### Legend (for quick scanning)
 
-## DRY (do-not repeat yourself)
+#### Priority
 
-- [ ] Parameterize all localStorage operations
-- [ ] Parameterize render logic (including initial render)
-- [ ] Remove specialized portfolio/watchlist functions
-- [ ] Preserve unique button + event listener behavior where necessary
+- P1 — High‑impact improvement; meaningful clarity or consolidation
+- P2 — Medium‑impact improvement; helpful but not urgent
+- P3 — Low‑impact or product‑level decision
 
-### saveStorage() [DRY]
+#### Effort
 
-- [ ] Replace savePortfolio()
-- [ ] Replace saveWatchlist()
-- [ ] Implement a single saveStorage(type, data)
+- S — Small (minutes to an hour)
+- M — Medium (1–3 hours)
+- L — Large (multi‑file or architectural change)
 
-### fetchQuote [SOC]
+## 1. Data & Storage Architecture
 
-- [ ] Keep fetchQuote() as the unified entry point
-- [ ] Add fetchBySymbol() for strings < 5 chars
-- [ ] Add fetchByName() for strings ≥ 5 chars
+### LocalStorage Abstraction
 
-## Event Listener Consolidation [DRY]
+- [ ] Create unified saveStorage(type, data) helper — P1 / M
+- [ ] Replace savePortfolio() and saveWatchlist() — P1 / S
+- [ ] Parameterize all localStorage read/write operations — P2 / M
+- [ ] Separate storage logic from rendering logic — P2 / M
+
+### Lookup Logic
+
+- [ ] Keep fetchQuote() as unified entry point — P1 / S
+- [ ] Add fetchBySymbol() for short (<5 char) queries — P2 / M
+- [ ] Add fetchByName() for long (≥5 char) queries — P2 / M
+- [ ] Improve clarity around symbol vs. name resolution — P3 / S
+
+## 2. Rendering & UI Structure
+
+### Render Consolidation
+
+- [ ] Create unified render() function — P1 / M
+- [ ] Replace renderPortfolio() and renderWatchlist() with parameterized calls — P1 / M
+- [ ] Parameterize initial render logic — P2 / S
+- [ ] Separate DOM updates from data transformations — P2 / M
+
+### Refresh Workflow
+
+- [ ] Implement single refresh() function — P2 / S
+- [ ] Ensure refresh triggers unified render pipeline — P2 / S
+
+## 3. Event Handling Improvements
+
+### Event Listener Consolidation
 
 Original duplicated listeners:
 
@@ -34,37 +57,44 @@ Original duplicated listeners:
 // watchlistContainer.addEventListener('click', (e) => {
 ```
 
-Refactor:
+### Refactor:
 
-- [ ] Create a single stockContainer.addEventListener(...)
-- [ ] Ensure container type determines behavior
+- [ ] Replace with single stockContainer.addEventListener(...) — P1 / S
+- [ ] Use container type or dataset attributes to determine behavior — P1 / S
+- [ ] Preserve unique button behaviors where necessary — P2 / S
 
-## Refresh Button [DRY] + [SOC]
+## 4. Behavioral Decisions (Low Priority)
 
-- [ ] Create a unified refresh() function
-- [ ] Create a unified render() function
-- [ ] Replace renderPortfolio() and renderWatchlist() with parameterized calls
+### These are product‑level choices, not structural issues:
 
-## Low Priority
+- [ ] Decide whether adding an existing stock overwrites or increments shares — P3 / S
+- [ ] Decide whether HUD displays unique stock count or total shares — P3 / S
 
-- [ ] Decide whether adding an existing stock should overwrite or increment shares
-- [ ] Decide whether HUD should show unique stocks or total shares
-
-## API Reference
+## 5. API Reference
 
 ```json
-/*
-    {
-      "symbol": "AAPL",
-      "name": "Apple Inc",
-      "price": "234.56",
-      "change": "-1.23",
-      "percent_change": "-0.52"
-    }
-    json
-    {
-      "code": 400,
-      "message": "Symbol not supported"
-    }
-*/
+
+  {
+    "symbol": "AAPL",
+    "name": "Apple Inc",
+    "price": "234.56",
+    "change": "-1.23",
+    "percent_change": "-0.52"
+  }
+
+  {
+    "code": 400,
+    "message": "Symbol not supported"
+  }
+
 ```
+## 6. Future Considerations
+
+### These are optional long‑term ideas that may be useful if the project is ever expanded or revisited:
+
+- Potential migration to a small state‑management pattern (e.g., a simple store object) to centralize updates
+- Consider extracting API logic into a dedicated module for easier testing
+- Evaluate whether UI components could benefit from lightweight templating for readability
+- Explore minor UX refinements (e.g., clearer feedback on invalid symbols or network errors)
+
+These are not required for the current scope but could provide value if the app grows or new features are added.

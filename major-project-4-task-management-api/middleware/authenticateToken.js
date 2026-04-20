@@ -1,5 +1,3 @@
-// middleware/authenticateToken.js
-
 const jwt = require('jsonwebtoken');
 
 function authenticateToken(req, res, next) {
@@ -9,7 +7,7 @@ function authenticateToken(req, res, next) {
   if (!authHeader) {
     return res.status(401).json({ error: 'Authorization header missing' });
   }
-  // Extract the token from "Bearer TOKEN" format
+  // Extract the token from "Bearer Token" format
   const token = authHeader.split(' ')[1]; // get the token part
   // Check if token was provided
   if (!token) {

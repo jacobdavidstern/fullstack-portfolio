@@ -1,5 +1,3 @@
-// src/utils/formatDuration
-
 // Helper to format seconds as M:SS
 export default function formatDuration(seconds) {
   const secsNum = Number(seconds) || 0;

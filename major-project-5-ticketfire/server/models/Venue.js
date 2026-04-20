@@ -1,5 +1,3 @@
-// server/models/Venue.js
-
 const mongoose = require('mongoose');
 
 const venueSchema = new mongoose.Schema(

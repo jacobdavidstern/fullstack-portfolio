@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   res.send('Music Player backend is running');
 });
 
-// API ROUTE must be first
+// API route must be first
 app.get('/api/album', async (req, res) => {
   try {
     const albumId = req.query.album_id;
@@ -61,9 +61,6 @@ app.get('/api/album', async (req, res) => {
 
     const albumData = await albumRes.json();
     const tracksData = await tracksRes.json();
-
-    // DEBUG
-    // console.log('Jamendo raw ', { albumData, tracksData });
 
     const album = albumData.results?.[0] || {};
     const rawTracks = tracksData.results || [];

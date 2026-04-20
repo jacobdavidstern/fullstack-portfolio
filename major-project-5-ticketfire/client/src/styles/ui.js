@@ -1,5 +1,3 @@
-// client/src/styles/ui.js
-
 import { theme } from './theme';
 
 export const ui = {

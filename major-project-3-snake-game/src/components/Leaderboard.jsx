@@ -1,5 +1,3 @@
-// src/components/Leaderboard.jsx
-
 export default function Leaderboard({ scores }) {
   // Make a sorted copy (never mutate props)
   const sorted = [...scores].sort((a, b) => b.score - a.score);

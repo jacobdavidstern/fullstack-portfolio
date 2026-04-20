@@ -1,5 +1,3 @@
-// docs/ticketfire-architecture-overview.md
-
 # TicketFire Architecture Overview (TL;DR)
 
 This document summarizes the core structure of the TicketFire frontend: routes, reusable components, state ownership, and architectural principles.

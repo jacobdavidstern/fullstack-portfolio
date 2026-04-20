@@ -1,5 +1,3 @@
-// server/routes/venueRoutes.js
-
 const express = require('express');
 const router = express.Router();
 const { createVenues } = require('../controllers/venueController');
@@ -7,12 +5,14 @@ const { protect } = require('../middleware/authMiddleware');
 const { authorizeRole } = require('../middleware/authorizeRole');
 const Client = require('../models/Client');
 const Venue = require('../models/Venue');
+
+// Route registry must be invoked at definition time to capture Express 5 routes
 const { register } = require('../routeRegistry');
 
 // GET /api/:slug/venues
 router.get(
   '/:slug/venues',
-  // DEBUG express 5 endpoints can only be captured at definition
+  // Register route for centralized tracking/inspection
   register('GET', '/:slug/venues', '/api'),
   protect,
   authorizeRole('staff', 'official', 'owner'),
@@ -35,7 +35,7 @@ router.get(
 // POST /api/:slug/venues
 router.post(
   '/:slug/venues',
-  // DEBUG express 5 endpoints can only be captured at definition
+  // Register route for centralized tracking/inspection
   register('POST', '/:slug/venues', '/api'),
   protect,
   authorizeRole('owner', 'official'),

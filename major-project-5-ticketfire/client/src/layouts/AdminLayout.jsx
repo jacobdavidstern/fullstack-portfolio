@@ -1,5 +1,3 @@
-// client/src/layouts/AdminLayout.jsx
-
 import { DEMO_MODE } from '../demo';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../auth/useAuth';

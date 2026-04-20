@@ -1,5 +1,3 @@
-// docs/ticketfire-full-architecture-planning.md
-
 # TicketFire Full Architecture Planning
 
 This document provides the detailed architectural reasoning behind TicketFire’s frontend: component trees, state ownership, data flow, and the mental model used to structure the application.

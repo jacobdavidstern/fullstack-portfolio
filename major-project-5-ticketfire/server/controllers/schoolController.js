@@ -1,5 +1,3 @@
-// server/controllers/schoolController.js
-
 const mongoose = require('mongoose');
 const School = require('../models/School');
 

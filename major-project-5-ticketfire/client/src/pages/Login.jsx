@@ -1,5 +1,3 @@
-// client/src/pages/Login.jsx
-
 import { DEMO_MODE } from '../demo';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../auth/useAuth';

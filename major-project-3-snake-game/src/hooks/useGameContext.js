@@ -1,5 +1,3 @@
-// src/hooks/useGameContext.js
-
 import { useContext } from 'react';
 import { GameContext } from '../context/GameContext';
 

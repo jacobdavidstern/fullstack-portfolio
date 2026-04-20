@@ -1,14 +1,20 @@
-// src/hooks/useGame.js
-
 import { useEffect, useRef } from 'react';
 import { useGameContext } from '../hooks/useGameContext';
 import { DIRECTIONS, GRID_SIZE, INITIAL_SPEED } from '../constants';
 
+/**
+ * Custom hook to manage the Snake game engine.
+ * Handles movement logic, collision detection, and keyboard input synchronization.
+ * * @returns {Object} The current game state and a dispatcher to update it.
+ */
 export default function useGame() {
   const { gameState, setGameState } = useGameContext();
 
-  // This ref tracks the direction the snake is actually moving to
-  // prevent it from reversing into itself during fast key presses.
+  /**
+   * Tracks the direction of the last processed move.
+   * Essential for preventing a "180-degree turn" bug where the snake
+   * could reverse into itself if two keys are pressed within one tick.
+   */
   const lastProcessedDirection = useRef(gameState.direction);
 
   // Handle keyboard input
@@ -17,7 +23,8 @@ export default function useGame() {
       const newDir = DIRECTIONS[e.key];
       if (!newDir) return;
 
-      // Reverse prevention; check against ref, not state
+      // Reverse prevention: logic requires checking against the ref
+      // to account for the snake's actual physical orientation.
       const isOpposite =
         newDir.x === -lastProcessedDirection.current.x &&
         newDir.y === -lastProcessedDirection.current.y;
@@ -31,11 +38,12 @@ export default function useGame() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [setGameState]);
 
-  // A snake is fundamentally a queue of coordinates
-  // Movement = add new head, remove tail
-  // Growth = add new head, don’t remove tail
-
-  // Handle snake movement
+  /**
+   * Core Game Loop
+   * Manages snake movement using a queue-based coordinate system:
+   * - Movement: Add new head, remove tail.
+   * - Growth: Add new head, retain tail.
+   */
   useEffect(() => {
     const interval = setInterval(() => {
       setGameState((prev) => {

@@ -1,5 +1,3 @@
-// client/main.jsx:
-
 import ReactDOM from 'react-dom/client';
 import { AuthProvider } from './auth/AuthContext';
 import App from './App';

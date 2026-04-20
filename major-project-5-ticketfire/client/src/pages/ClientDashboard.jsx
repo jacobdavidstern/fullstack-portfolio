@@ -1,5 +1,3 @@
-// client/src/pages/ClientDashboard.jsx
-
 import { DEMO_MODE } from '../demo';
 import { useAuth } from '../auth/useAuth';
 import { ui } from '../styles/ui';

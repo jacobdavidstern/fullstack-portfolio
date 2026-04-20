@@ -1,5 +1,3 @@
-// client/src/pages/EditEvent.jsx
-
 import { DEMO_MODE } from '../demo';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';

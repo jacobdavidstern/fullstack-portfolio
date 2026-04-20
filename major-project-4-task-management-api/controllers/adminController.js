@@ -1,5 +1,3 @@
-// Admin Controller - Admin-only operations
-
 const Post = require('../models/Post');
 const User = require('../models/User');
 

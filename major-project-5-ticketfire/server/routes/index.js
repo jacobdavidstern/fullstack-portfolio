@@ -1,5 +1,3 @@
-// routes/index.js
-
 const express = require('express');
 const router = express.Router();
 
@@ -23,7 +21,7 @@ router.use('/', venueRoutes);
 // Catch-all slug route LAST
 router.use('/', clientRoutes);
 
-// DEBUG
+// Log route load order at startup
 console.log('ROUTE ORDER LOADED');
 
 module.exports = router;

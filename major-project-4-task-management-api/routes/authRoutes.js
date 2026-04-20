@@ -1,5 +1,3 @@
-// routes/authRoutes.js
-
 const bcrypt = require('bcrypt');
 const express = require('express');
 const jwt = require('jsonwebtoken');

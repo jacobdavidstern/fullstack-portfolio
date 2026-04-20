@@ -1,5 +1,3 @@
-// server/models/School.js
-
 const mongoose = require('mongoose');
 
 const schoolSchema = new mongoose.Schema(

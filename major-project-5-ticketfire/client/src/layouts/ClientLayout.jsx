@@ -1,5 +1,3 @@
-// client/src/layouts/ClientLayout.jsx
-
 import { DEMO_MODE } from '../demo';
 import { useEffect } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';

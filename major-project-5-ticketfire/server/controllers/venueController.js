@@ -1,5 +1,3 @@
-// server/controllers/venueController.js
-
 const mongoose = require('mongoose');
 const Venue = require('../models/Venue');
 

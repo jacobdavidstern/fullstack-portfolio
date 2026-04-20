@@ -1,8 +1,6 @@
-// server/routes/clientRoutes.js
-
 const express = require('express');
 const router = express.Router();
-const Client = require('../models/Client'); // adjust path if needed
+const Client = require('../models/Client');
 
 // GET /api/:slug
 router.get('/:slug', async (req, res) => {

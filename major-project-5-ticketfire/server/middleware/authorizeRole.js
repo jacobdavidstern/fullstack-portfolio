@@ -1,5 +1,3 @@
-// server/middleware/authorizeRole.js
-
 const authorizeRole = (...roles) => {
   return (req, res, next) => {
     // Platform admins bypass tenant restriction

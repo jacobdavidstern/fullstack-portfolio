@@ -1,5 +1,3 @@
-// src/components/ScoreDisplay.jsx
-
 import { useGameContext } from '../hooks/useGameContext';
 import formatDuration from '../utils/formatDuration';
 

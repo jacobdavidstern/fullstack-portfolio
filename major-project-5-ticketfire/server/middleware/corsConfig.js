@@ -1,5 +1,3 @@
-// middleware/corsConfig.js
-
 const cors = require('cors');
 
 const allowedOrigins = [

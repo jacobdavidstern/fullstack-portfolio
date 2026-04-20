@@ -1,5 +1,3 @@
-// server.js
-
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -15,7 +13,7 @@ const STOCK_API = 'https://api.twelvedata.com';
 const FRONTEND = 'https://fullstack-stocktracker.vercel.app';
 const LOCAL = 'http://127.0.0.1:5500';
 
-// Cors first
+// CORS first
 app.use(
   cors({
     origin: [FRONTEND, LOCAL],

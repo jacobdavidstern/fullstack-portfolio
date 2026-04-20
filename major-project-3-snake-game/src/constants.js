@@ -1,8 +1,6 @@
-// src/constants.js
-
 export const GRID_SIZE = 25;
-export const INITIAL_SPEED = 150;
-// 1000ms/150ms≈6.6 renders per second
+export const INITIAL_SPEED = 133;
+// 1000ms/150ms ≈ 7.5 renders per second
 
 export const DIRECTIONS = {
   ArrowUp: { x: 0, y: -1 },

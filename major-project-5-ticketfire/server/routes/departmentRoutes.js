@@ -1,5 +1,3 @@
-// server/routes/departmentRoutes.js
-
 const express = require('express');
 const router = express.Router();
 const { createDepartments } = require('../controllers/departmentController');
@@ -7,12 +5,14 @@ const { protect } = require('../middleware/authMiddleware');
 const { authorizeRole } = require('../middleware/authorizeRole');
 const Client = require('../models/Client');
 const Department = require('../models/Department');
+
+// Route registry must be invoked at definition time to capture Express 5 routes
 const { register } = require('../routeRegistry');
 
 // GET /api/:slug/departments
 router.get(
   '/:slug/departments',
-  // DEBUG express 5 endpoints can only be captured at definition
+  // Register route for centralized tracking/inspection
   register('GET', '/:slug/departments', '/api'),
   protect,
   authorizeRole('staff', 'official', 'owner'),
@@ -35,7 +35,7 @@ router.get(
 // POST /api/:slug/departments
 router.post(
   '/:slug/departments',
-  // DEBUG express 5 endpoints can only be captured at definition
+  // Register route for centralized tracking/inspection
   register('POST', '/:slug/departments', '/api'),
   protect,
   authorizeRole('owner', 'official'),

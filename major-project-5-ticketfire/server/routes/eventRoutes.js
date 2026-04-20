@@ -1,5 +1,3 @@
-// server/routes/eventRoutes.js
-
 const express = require('express');
 const router = express.Router();
 
@@ -13,6 +11,7 @@ const {
 const { protect } = require('../middleware/authMiddleware');
 const { authorizeRole } = require('../middleware/authorizeRole');
 
+// Route registry must be invoked at definition time to capture Express 5 routes
 const { register } = require('../routeRegistry');
 
 // Get all events for a client (slug-based)
@@ -20,7 +19,7 @@ router.get(
   '/:slug/events',
   protect,
   authorizeRole('staff', 'official', 'owner'),
-  // DEBUG express 5 endpoints can only be captured at definition
+  // Register route for centralized tracking/inspection
   register('GET', '/:slug/events', '/api'),
   getEvents
 );
@@ -30,7 +29,7 @@ router.get(
   '/:slug/events/:eventNumber',
   protect,
   authorizeRole('staff', 'official', 'owner'),
-  // DEBUG express 5 endpoints can only be captured at definition
+  // Register route for centralized tracking/inspection
   register('GET', '/:slug/events/:eventNumber', '/api'),
   getEvent
 );
@@ -49,7 +48,7 @@ router.patch(
   '/:slug/events/:eventNumber',
   protect,
   authorizeRole('official', 'owner'),
-  // DEBUG express 5 endpoints can only be captured at definition
+  // Register route for centralized tracking/inspection
   register('PATCH', '/:slug/events/:eventNumber', '/api'),
   updateEvent
 );

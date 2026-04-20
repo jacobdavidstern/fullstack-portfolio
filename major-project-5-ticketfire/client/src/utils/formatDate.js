@@ -1,5 +1,3 @@
-// src/utils/formatDate.js
-
 const formatDate = (date) => {
   return new Date(date).toLocaleDateString('en-US', {
     month: 'short',

@@ -1,5 +1,3 @@
-// server/controllers/departmentController.js
-
 const mongoose = require('mongoose');
 const Department = require('../models/Department');
 

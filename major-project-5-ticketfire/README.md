@@ -140,8 +140,8 @@ This keeps the UI behavior identical to real mode while avoiding the need for a 
 Demo Mode can be controlled via URL flags:
 
 ```sh
-?demo=true —  Demo Mode on
-?demo=false — Demo Mode off
+?demo=true  // Demo Mode on
+?demo=false // Demo Mode off
 ```
 
 No flag — defaults to:

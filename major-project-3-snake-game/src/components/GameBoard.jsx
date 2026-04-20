@@ -1,5 +1,3 @@
-// src/components/GameBoard.jsx
-
 import useGame from '../hooks/useGame';
 import { GRID_SIZE } from '../constants';
 

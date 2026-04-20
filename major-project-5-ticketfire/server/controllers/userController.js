@@ -1,5 +1,3 @@
-// controllers/userController.js
-
 const Client = require('../models/Client');
 const User = require('../models/User');
 

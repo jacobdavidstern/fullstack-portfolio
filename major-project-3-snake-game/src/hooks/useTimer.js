@@ -1,5 +1,3 @@
-// src/hooks/useTimer.js
-
 import { useState, useEffect, useRef } from 'react';
 
 export default function useTimer(initialSeconds = 180) {

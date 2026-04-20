@@ -1,5 +1,3 @@
-// server/controllers/eventController.js
-
 const mongoose = require('mongoose');
 
 const Client = require('../models/Client');
@@ -8,12 +6,12 @@ const Event = require('../models/Event');
 const School = require('../models/School');
 const Venue = require('../models/Venue');
 
-// CREATE EVENT (slug-based)
+// Create Event (slug-based)
 const createEvent = async (req, res) => {
   const { slug } = req.params;
 
   try {
-    // Resolve slug → client
+    // Resolve slug : client
     const client = await Client.findOne({ slug });
     if (!client) {
       return res.status(404).json({ message: 'Client not found' });
@@ -130,7 +128,7 @@ const createEvent = async (req, res) => {
   }
 };
 
-// GET SINGLE EVENT (slug-based)
+// Get Single Event (slug-based)
 const getEvent = async (req, res) => {
   try {
     const { slug, eventNumber } = req.params;
@@ -163,7 +161,7 @@ const getEvent = async (req, res) => {
   }
 };
 
-// GET ALL EVENTS (slug-based)
+// Get All Events (slug-based)
 const getEvents = async (req, res) => {
   try {
     const { slug } = req.params;
@@ -198,7 +196,7 @@ const getEvents = async (req, res) => {
   }
 };
 
-// UPDATE EVENT (slug-based)
+// Update Event (slug-based)
 const updateEvent = async (req, res) => {
   try {
     const { slug, eventNumber } = req.params;

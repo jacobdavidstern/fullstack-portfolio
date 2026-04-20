@@ -1,5 +1,3 @@
-// client/src/pages/EventDetailsWrapper.jsx
-
 import { DEMO_MODE } from '../demo';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';

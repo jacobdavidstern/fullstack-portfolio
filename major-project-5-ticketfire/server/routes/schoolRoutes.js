@@ -1,5 +1,3 @@
-// server/routes/schoolRoutes.js
-
 const express = require('express');
 const router = express.Router();
 const { createSchools } = require('../controllers/schoolController');
@@ -7,12 +5,14 @@ const { protect } = require('../middleware/authMiddleware');
 const { authorizeRole } = require('../middleware/authorizeRole');
 const Client = require('../models/Client');
 const School = require('../models/School');
+
+// Route registry must be invoked at definition time to capture Express 5 routes
 const { register } = require('../routeRegistry');
 
 // GET /api/:slug/schools
 router.get(
   '/:slug/schools',
-  // DEBUG express 5 endpoints can only be captured at definition
+  // Register route for centralized tracking/inspection
   register('GET', '/:slug/schools', '/api'),
   protect,
   authorizeRole('staff', 'official', 'owner'),
@@ -35,7 +35,7 @@ router.get(
 // POST /api/:clientId/schools
 router.post(
   '/:slug/schools',
-  // DEBUG express 5 endpoints can only be captured at definition
+  // Register route for centralized tracking/inspection
   register('POST', '/:slug/schools', '/api'),
   protect,
   authorizeRole('owner', 'official'),

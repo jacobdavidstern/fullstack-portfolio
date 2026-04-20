@@ -1,5 +1,3 @@
-// server/controllers/authController.js
-
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
@@ -7,6 +5,14 @@ const Client = require('../models/Client');
 const Counter = require('../models/Counter');
 const User = require('../models/User');
 
+/**
+ * Registers a new Client and an associated Owner user as an atomic operation.
+ * * Uses a MongoDB session and transaction to ensure that either both the
+ * Client and User are created, or neither are, preventing orphaned data.
+ * * @param {Object} req - Express request object containing slug, name, email, and password.
+ * @param {Object} res - Express response object.
+ * @returns {Promise<void>}
+ */
 const registerClient = async (req, res) => {
   const session = await mongoose.startSession();
   session.startTransaction();
@@ -14,9 +20,6 @@ const registerClient = async (req, res) => {
   try {
     const { slug, name, email, password } = req.body;
 
-    // Use a MongoDB session to atomically create the Client and its Owner user.
-    // This prevents partial writes (e.g., a Client without an Owner) if one step fails.
-    // Requires a replica set, which Atlas supports, although local MongoDB may not.
     const existingUser = await User.findOne({ email }).session(session);
     if (existingUser) {
       await session.abortTransaction();

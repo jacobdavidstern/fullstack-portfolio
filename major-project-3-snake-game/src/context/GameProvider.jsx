@@ -1,5 +1,3 @@
-// src/context/GameProvider.jsx
-
 import { useState } from 'react';
 import { GameContext } from './GameContext';
 import { INITIAL_GAME_STATE } from '../constants';

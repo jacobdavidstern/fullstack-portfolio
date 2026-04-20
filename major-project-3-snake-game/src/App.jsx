@@ -1,5 +1,3 @@
-// App.jsx
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import { GameProvider } from './context/GameProvider';

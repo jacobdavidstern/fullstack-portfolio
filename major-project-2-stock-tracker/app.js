@@ -1,6 +1,4 @@
-// app.js
-
-// ----- Elements -----
+// Elements
 const searchInput = document.querySelector('#stock-input');
 const searchForm = document.querySelector('#stock-form');
 const resultCard = document.querySelector('#stock-result-card');
@@ -27,7 +25,7 @@ const stockChangeEl = document.querySelector('#stockChange');
 const portfolioContainer = document.querySelector('#portfolio-stocks');
 const watchlistContainer = document.querySelector('#watchlist-stocks');
 
-// === Shared Local Storage Utilities ===
+// Shared Local Storage Utilities
 const STORAGE_KEYS = {
   portfolio: 'portfolioData',
   watchlist: 'watchlistData',
@@ -53,15 +51,15 @@ function clearStorage(storeKey) {
   localStorage.removeItem(storeKey);
 }
 
-// ----- Helpers -----
+// Helpers
 function fmtCurrency(n) {
   const x = Number(n);
   if (Number.isNaN(x)) return '$0.00';
   return `$${x.toFixed(2)}`;
 }
 
+// Accepts price strings like "+1.23 (0.50%)", returns raw numbers
 function netChangeTextToNumber(text) {
-  // Accepts price strings like "+1.23 (0.50%)", returns raw numbers
   if (typeof text === 'number') return text;
   const match = String(text).match(/([+\-]?\d+(\.\d+)?)/); // eslint-disable-line
   return match ? Number(match[1]) : 0;
@@ -72,7 +70,7 @@ function renderStock(data) {
   stockNameEl.textContent = data.name;
   stockTickerEl.textContent = data.symbol;
 
-  // Prefer `price`, fallback to `close` after market hours
+  // Prefer 'price', fallback to 'close' after market hours
   const rawPrice = data.price ?? data.close;
   const currentPrice = parseFloat(rawPrice);
   stockPriceEl.textContent = `$${currentPrice.toFixed(2)}`;
@@ -178,9 +176,8 @@ function saveWatchlist() {
 // First fetch ticker quote, then fallback to fetch a name quote
 async function fetchQuote(input) {
   try {
-    // 1. Try symbol first — now hitting your backend
+    // 1. Try symbol first
     const response = await fetch(
-      // `http://localhost:3000/api/stock/quote?symbol=${encodeURIComponent(input)}`
       `${API_URL}/api/stock/quote?symbol=${encodeURIComponent(input)}`
     );
     const data = await response.json();
@@ -190,9 +187,8 @@ async function fetchQuote(input) {
     console.log('Symbol not found, falling back to name:', err);
 
     try {
-      // 2. Fallback: search by name — also via backend
+      // 2. Fallback: search by name
       const response = await fetch(
-        // `/api/stock/search?name=${encodeURIComponent(input)}`
         `${API_URL}/api/stock/search?name=${encodeURIComponent(input)}`
       );
       const data = await response.json();
@@ -242,8 +238,7 @@ function updateHUD() {
   valueEl.textContent = fmtCurrency(portfolioValue);
 }
 
-// ----- Events -----
-
+// Events
 // Search form submit
 searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -416,7 +411,6 @@ if (refreshBtn) {
 }
 
 // Init
-
 // Render portfolio and watchlist
 renderPortfolio();
 renderWatchlist();
@@ -440,18 +434,3 @@ if (resetBtn) {
     console.warn('Portfolio reset');
   });
 }
-
-/*
-    {
-      "symbol": "AAPL",
-      "name": "Apple Inc",
-      "price": "234.56",
-      "change": "-1.23",
-      "percent_change": "-0.52"
-    }
-    json
-    {
-      "code": 400,
-      "message": "Symbol not supported"
-    }
-*/

@@ -1,5 +1,3 @@
-// client/src/auth/AuthContext.jsx
-
 import { createContext, useState, useEffect } from 'react';
 import { apiFetch } from '../api/api';
 

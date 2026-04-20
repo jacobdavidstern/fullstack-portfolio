@@ -1,5 +1,3 @@
-<!-- README.md -->
-
 # Task Management API
 
 A secure REST API for managing personal tasks with user authentication, role‑based access, and MongoDB persistence

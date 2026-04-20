@@ -1,5 +1,3 @@
-// client/src/App.jsx
-
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './auth/AuthContext';
 import ProtectedRoute from './routes/ProtectedRoute';

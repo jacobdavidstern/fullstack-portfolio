@@ -1,5 +1,3 @@
-// client/src/pages/EventDetails.jsx
-
 import { useAuth } from '../auth/useAuth';
 import { ui } from '../styles/ui';
 

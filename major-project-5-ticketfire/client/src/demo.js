@@ -1,5 +1,3 @@
-// client/src/demo.js
-
 const param = new URLSearchParams(window.location.search).get('demo');
 
 let demo = import.meta.env.MODE === 'production';

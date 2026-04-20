@@ -1,6 +1,3 @@
-// server/routes/authRoutes.js
-// Authentication management: login, register, issue JWT, verify credentials
-
 const express = require('express');
 const router = express.Router();
 
@@ -8,34 +5,33 @@ const { registerClient, registerUser, login } = require('../controllers/authCont
 const { protect } = require('../middleware/authMiddleware');
 const { authorizeRole } = require('../middleware/authorizeRole');
 
-// DEBUG express 5 endpoints can only be captured at definition
+// Route registry must be invoked at definition time to capture Express 5 routes
 const { register } = require('../routeRegistry');
-const PREFIX = '/api/auth';
 
 // Public onboarding
 router.post(
   '/register-client',
-  // DEBUG express 5 endpoints can only be captured at definition
-  register('POST', '/register-client', PREFIX),
+  // Register route for centralized tracking/inspection
+  register('POST', '/register-client', '/api/auth'),
   registerClient
 );
 
 // Client owner creates users
 router.post(
   '/:clientId/users',
-  // DEBUG express 5 endpoints can only be captured at definition
-  register('POST', '/:clientId/users', PREFIX),
+  // Register route for centralized tracking/inspection
+  register('POST', '/:clientId/users', '/api/auth'),
   protect,
   authorizeRole('owner'),
   registerUser
 );
 
-// Login, express-rate-limit-ed
+// Login (rate limited globally)
 router.post(
   '/login',
-  // DEBUG express 5 endpoints can only be captured at definition
-  register('POST', '/login', PREFIX),
-  // loginLimiter, // global rate limiting in server
+  // Register route for centralized tracking/inspection
+  register('POST', '/login', '/api/auth'),
+  // loginLimiter, // handled at server level
   login
 );
 

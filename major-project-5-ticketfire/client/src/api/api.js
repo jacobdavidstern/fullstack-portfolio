@@ -1,5 +1,3 @@
-// client/src/api/api.js
-
 import { DEMO_MODE } from '../demo';
 const API_BASE = 'http://localhost:3001/api';
 
