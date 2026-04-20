@@ -10,6 +10,7 @@ module.exports = [
     rules: {
       // Turn off import ordering for config scripts
       'import/order': 'off',
+      'import/no-commonjs': 'off',
     },
   },
 ];

@@ -22,7 +22,7 @@ module.exports = [
       'prettier.config.cjs',
     ],
     languageOptions: {
-      ecmaVersion: 'latest',
+      ecmaVersion: '2022',
       sourceType: 'commonjs',
       globals: {
         require: 'readonly',
@@ -31,26 +31,29 @@ module.exports = [
         process: 'readonly',
       },
     },
+    rules: {
+      'import/no-commonjs': 'off',
+    },
   },
 
   // 2. Shared base config
   ...baseConfig,
 
-  // 3. Markdown override — un/comment entire block to en/disable eslint markdown plugin
-  // {
-  //   files: ['**/*.md'],
-  //   plugins: {
-  //     markdown: markdownPlugin,
-  //     prettier: prettierPlugin,
-  //   },
-  //   processor: 'markdown/markdown',
-  //   rules: {
-  //     'prettier/prettier': ['warn', prettierConfig],
-  //     'no-undef': 'off',
-  //     'no-unused-vars': 'off',
-  //   },
-  // },
-
-  // 4. Repo‑specific overrides
-  ...localOverrides,
+  // 3. JSX support for React components
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      ecmaFeatures: {
+        jsx: true,
+      },
+    },
+    plugins: {
+      react: require('eslint-plugin-react'),
+    },
+    rules: {
+      'react/react-in-jsx-scope': 'off',
+    },
+  },
 ];
