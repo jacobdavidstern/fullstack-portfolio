@@ -4,7 +4,7 @@ const js = require('@eslint/js');
 const importPlugin = require('eslint-plugin-import');
 const prettierPlugin = require('eslint-plugin-prettier');
 const eslintConfigPrettier = require('eslint-config-prettier');
-const markdownPlugin = require('eslint-plugin-markdown');
+const markdownPlugin = require('@eslint/markdown');
 const globals = require('globals'); // modern env globals
 
 // Absolute path to Prettier config in repo root
@@ -36,7 +36,7 @@ module.exports = [
     plugins: {
       prettier: prettierPlugin,
       import: importPlugin,
-      markdown: markdownPlugin, // registered but unused unless override is added
+      markdown: require('@eslint/markdown'), // unused unless overidden
     },
     rules: {
       // Enforce Prettier formatting using your Prettier config
@@ -57,13 +57,18 @@ module.exports = [
       'no-empty': 'warn',
     },
   },
-
-  // 5. (Optional) Markdown override can be added in repo config when ready
+  // 5. Markdown override, un/comment entire block for markdown plugin
   // {
   //   files: ['**/*.md'],
-  //   processor: 'markdown/markdown',
+  //   plugins: {
+  //     markdown: require('@eslint/markdown'),
+  //     prettier: prettierPlugin,
+  //   },
+  //   processor: '@eslint/markdown/markdown',
   //   rules: {
+  //     // Apply your Prettier config to Markdown
   //     'prettier/prettier': ['warn', prettierConfig],
+  //     // Disable rules that break inside Markdown code fences
   //     'no-undef': 'off',
   //     'no-unused-vars': 'off',
   //   },
